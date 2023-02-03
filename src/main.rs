@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+
 pub fn largest_five_digit_number_possible(num: &str) -> u32 {
     let mut char_array: Vec<char> = vec![];
     for char in num.chars() {
@@ -66,7 +67,12 @@ fn largest_five_digit_number(num: &str) -> u32 {
 
 // https://www.codewars.com/kata/5412509bd436bd33920011bc/train/rust
 fn maskify(cc: &str) -> String {
-    panic!("{}Implement a rusty solution here!", cc);
+    let length = cc.len();
+    if length < 5 {
+        return cc.to_string();
+    }
+
+    format!("{}{}", "#".repeat(&length - 4), &cc[length - 4..length]).to_string()
 }
 
 fn main() {
@@ -81,6 +87,7 @@ mod tests {
     #[test]
     fn it_masks_example_strings() {
         assert_eq!(maskify("4556364607935616"), "############5616");
+        assert_eq!(maskify("5616"), "5616");
         assert_eq!(maskify("1"), "1");
         assert_eq!(maskify("11111"), "#1111");
     }
