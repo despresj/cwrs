@@ -1,10 +1,6 @@
 #[allow(unused_variables)]
-mod working_functions;
+mod cw;
 
 fn main() {
-    println!(
-        "result = {}, answer = {}",
-        working_functions::dna_strand("AAAA"),
-        "TTTT"
-    );
+    println!("result = {}, answer = {}", cw::dna_strand("AAAA"), "TTTT");
 }
