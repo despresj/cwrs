@@ -1,5 +1,53 @@
 #![allow(dead_code)]
+// mod working_functions;
 
+// The first input array is the key to the correct answers to an exam, like
+// ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
+//
+// The two arrays are not empty and are the same length. Return the score for
+// this array of answers, giving +4 for each correct answer, -1 for each incorrect answer,
+// and +0 for each blank answer, represented as an empty string (in C the space character is used).
+//
+// If the score < 0, return 0.
+//
+// For example:
+//
+// checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) → 6
+// checkExam(["a", "a", "c", "b"], ["a", "a", "b",  ""]) → 7
+// checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
+// checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
+
+pub fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
+    let mut nums: Vec<i64> = Vec::new();
+    for (key, answer) in arr_a.iter().zip(arr_b.iter()) {
+        let score = match answer {
+            ans if ans == key => 4,
+            ans if ans.is_empty() => 0,
+            _ => -1,
+        };
+        nums.push(score)
+    }
+    let sum_score: i64 = nums.iter().sum();
+    sum_score.max(0)
+}
+
+// mod working_functions;
+
+// The first input array is the key to the correct answers to an exam, like
+// ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
+//
+// The two arrays are not empty and are the same length. Return the score for this
+// array of answers, giving +4 for each correct answer, -1 for each incorrect answer,
+// and +0 for each blank answer, represented as an empty string (in C the space character is used).
+//
+// If the score < 0, return 0.
+//
+// For example:
+//
+// checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) → 6
+// checkExam(["a", "a", "c", "b"], ["a", "a", "b",  ""]) → 7
+// checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
+// checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
 pub fn largest_five_digit_number_possible(num: &str) -> u32 {
     let mut char_array: Vec<char> = vec![];
     for char in num.chars() {
@@ -111,6 +159,15 @@ pub fn round_to_next_5(n: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_basic_check() {
+        assert_eq!(check_exam(&["a", "a", "b", "b"], &["a", "c", "b", "d"]), 6);
+        assert_eq!(check_exam(&["a", "a", "c", "b"], &["a", "a", "b", ""]), 7);
+        assert_eq!(check_exam(&["a", "a", "b", "c"], &["a", "a", "b", "c"]), 16);
+        assert_eq!(check_exam(&["b", "c", "b", "a"], &["", "a", "a", "c"]), 0);
+    }
+
     #[test]
     fn test_basic_round() {
         assert_eq!(round_to_next_5(1), 5);
