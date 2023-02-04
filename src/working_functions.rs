@@ -76,7 +76,9 @@ pub fn largest_five_digit_number_possible(num: &str) -> u32 {
 // 1234567890
 // 67890 is the greatest sequence of 5 consecutive digits.
 //
-// Complete the solution so that it returns the greatest sequence of five consecutive digits found within the number given. The number will be passed in as a string of only digits. It should return a five digit integer. The number passed may be as large as 1000 digits.
+// Complete the solution so that it returns the greatest sequence of five consecutive
+// digits found within the number give. The number will be passed in as a string of only digits.
+// It should return a five digit integer. The number passed may be as large as 1000 digits.
 //
 pub fn largest_five_digit_number(num: &str) -> u32 {
     let mut numeric_array: Vec<u32> = vec![];
@@ -93,9 +95,11 @@ pub fn largest_five_digit_number(num: &str) -> u32 {
     let output = numeric_array.iter().max().unwrap();
     *output
 }
-
 /// Return a String with all characters masked as '#' except the last 4.
-// Usually when you buy something, you're asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it.
+// Usually when you buy something, you're asked whether your credit card number,
+// phone number or answer to your most secret question is still correct. However,
+// since someone could look over your shoulder you don't want that shown on your
+// screen. Instead, we mask it.
 //
 // Your task is to write a function maskify, which changes all but the last four characters into '#'.
 //
