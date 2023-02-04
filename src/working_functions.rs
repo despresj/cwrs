@@ -1,6 +1,27 @@
 #![allow(dead_code)]
+//
+// Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and
+// carries the "instructions" for the development and functioning of living organisms.
+//
+// If you want to know more: http://en.wikipedia.org/wiki/DNA
+//
+// In DNA strings, symbols "A" and "T" are complements of each other, as "C" and
+// "G". Your function receives one side of the DNA (string, except for Haskell);
+// you need to return the other complementary side. DNA strand is never empty or
+// there is no DNA at all (again, except for Haskell).
+//
+// More similar exercise are found here: http://rosalind.info/problems/list-view/ (source)
+//
+// Example: (input --> output)
+//
+// "ATTGC" --> "TAACG"
+// "GTAT" --> "CATA"
 // mod working_functions;
-
+pub fn dna_strand(dna: &str) -> String {
+    #[allow(unused_variables)]
+    // Translate the DNA strand
+    String::from("FAIL")
+}
 // The first input array is the key to the correct answers to an exam, like
 // ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
 //
@@ -16,7 +37,6 @@
 // checkExam(["a", "a", "c", "b"], ["a", "a", "b",  ""]) → 7
 // checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
 // checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
-
 pub fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
     let mut nums: Vec<i64> = Vec::new();
     for (key, answer) in arr_a.iter().zip(arr_b.iter()) {
@@ -163,6 +183,21 @@ pub fn round_to_next_5(n: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn dotest(s: &str, expected: &str) {
+        let actual = dna_strand(s);
+        assert!(
+            actual == expected,
+            "With dna = \"{s}\"\nExpected \"{expected}\" but got \"{actual}\""
+        )
+    }
+
+    #[test]
+    fn fixed_tests() {
+        dotest("AAAA", "TTTT");
+        dotest("ATTGC", "TAACG");
+        dotest("GTAT", "CATA");
+    }
 
     #[test]
     fn test_basic_check() {
