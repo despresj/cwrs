@@ -18,9 +18,18 @@
 // "GTAT" --> "CATA"
 // mod working_functions;
 pub fn dna_strand(dna: &str) -> String {
-    #[allow(unused_variables)]
-    // Translate the DNA strand
-    String::from("FAIL")
+    let mut char_vec: Vec<char> = vec![];
+    for letter in dna.chars() {
+        let mapping = match letter {
+            'A' => 'T',
+            'T' => 'A',
+            'G' => 'C',
+            'C' => 'G',
+            _ => letter,
+        };
+        char_vec.push(mapping);
+    }
+    char_vec.iter().collect()
 }
 // The first input array is the key to the correct answers to an exam, like
 // ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
