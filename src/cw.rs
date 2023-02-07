@@ -1,4 +1,19 @@
-#![allow(dead_code)]
+#[allow(dead_code)]
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+//
+// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
+//
+// The following are examples of expected output values:
+//
+// kata.rgb(255, 255, 255) -- returns FFFFFF
+// kata.rgb(255, 255, 300) -- returns FFFFFF
+// kata.rgb(0, 0, 0) -- returns 000000
+// kata.rgb(148, 0, 211) -- returns 9400D3
+//
+pub fn rgb(r: i32, g: i32, b: i32) -> String {
+    String::from("key")
+}
+
 //
 // Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and
 // carries the "instructions" for the development and functioning of living organisms.
@@ -193,6 +208,13 @@ pub fn round_to_next_5(n: i32) -> i32 {
 mod tests {
     use super::*;
 
+    fn tests() {
+        assert_eq!(rgb(0, 0, 0), "000000");
+        assert_eq!(rgb(1, 2, 3), "010203");
+        assert_eq!(rgb(255, 255, 255), "FFFFFF");
+        assert_eq!(rgb(254, 253, 252), "FEFDFC");
+        assert_eq!(rgb(-20, 275, 125), "00FF7D");
+    }
     fn dotest(s: &str, expected: &str) {
         let actual = dna_strand(s);
         assert!(

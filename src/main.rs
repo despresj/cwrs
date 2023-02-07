@@ -2,6 +2,9 @@
 mod cw;
 
 fn main() {
-    println!("result = {}, answer = {}", cw::dna_strand("AAAA"), "TTTT");
-}
+    let x: i32 = 223;
+    let y: i32 = 223;
+    let z: i32 = 3;
 
+    println!("result = {}, answer = 2 ^ 2", cw::rgb(x, y, z));
+}
