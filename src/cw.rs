@@ -1,19 +1,37 @@
 #[allow(dead_code)]
-// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
-//
-// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
-//
-// The following are examples of expected output values:
-//
-// kata.rgb(255, 255, 255) -- returns FFFFFF
-// kata.rgb(255, 255, 300) -- returns FFFFFF
-// kata.rgb(0, 0, 0) -- returns 000000
-// kata.rgb(148, 0, 211) -- returns 9400D3
-//
-pub fn rgb(r: i32, g: i32, b: i32) -> String {
-    String::from("key")
+pub fn get_count(input: &str) -> usize {
+    let mut vowels_count: usize = 0;
+    for letter in input.chars() {
+        if letter == 'a' {
+            vowels_count += 1
+        } else if letter == 'e' {
+            vowels_count += 1
+        } else if letter == 'i' {
+            vowels_count += 1
+        } else if letter == 'o' {
+            vowels_count += 1
+        } else if letter == 'u' {
+            vowels_count += 1
+        }
+    }
+    vowels_count
 }
+pub fn get_count_regex(input: &str) -> usize {
+    let set = Regex::new(&[r"a|e|i|o|u"]).unwrap();
+    println!("set = {:?}", set);
 
+    set.find_iter("aaaaa");
+    let matches: Vec<usize> = set.matches(&input.to_lowercase()).into_iter().collect();
+    println!("matches = {:?}", matches);
+
+    matches.iter().sum()
+}
+pub fn number_to_string(i: i32) -> String {
+    i.to_string()
+}
+pub fn solution(phrase: &str) -> String {
+    phrase.chars().rev().collect()
+}
 //
 // Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and
 // carries the "instructions" for the development and functioning of living organisms.
@@ -207,14 +225,11 @@ pub fn round_to_next_5(n: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn tests() {
-        assert_eq!(rgb(0, 0, 0), "000000");
-        assert_eq!(rgb(1, 2, 3), "010203");
-        assert_eq!(rgb(255, 255, 255), "FFFFFF");
-        assert_eq!(rgb(254, 253, 252), "FEFDFC");
-        assert_eq!(rgb(-20, 275, 125), "00FF7D");
+    #[test]
+    fn sample_test() {
+        assert_eq!(solution("world"), "dlrow");
     }
+
     fn dotest(s: &str, expected: &str) {
         let actual = dna_strand(s);
         assert!(
@@ -290,4 +305,22 @@ fn test_basic_cooler() {
 fn test_basic() {
     assert_eq!(largest_five_digit_number(&"1234567890"), 67890);
     assert_eq!(largest_five_digit_number(&"731674765"), 74765);
+}
+#[test]
+fn fixed_tests() {
+    fn do_num_to_str_test(n: i32, expected: &str) {
+        let actual = number_to_string(n);
+        assert!(
+            actual == expected,
+            "With n = {n}\nExpected \"{expected}\" but got \"{actual}\""
+        )
+    }
+    do_num_to_str_test(67, "67");
+    do_num_to_str_test(79585, "79585");
+    do_num_to_str_test(1 + 2, "3");
+    do_num_to_str_test(1 - 2, "-1");
+}
+#[test]
+fn test_get_count() {
+    assert_eq!(get_count("abracadabra"), 5);
 }
