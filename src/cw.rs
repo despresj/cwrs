@@ -17,14 +17,9 @@ pub fn get_count(input: &str) -> usize {
     vowels_count
 }
 pub fn get_count_regex(input: &str) -> usize {
-    let set = Regex::new(&[r"a|e|i|o|u"]).unwrap();
-    println!("set = {:?}", set);
-
-    set.find_iter("aaaaa");
-    let matches: Vec<usize> = set.matches(&input.to_lowercase()).into_iter().collect();
-    println!("matches = {:?}", matches);
-
-    matches.iter().sum()
+    use regex::Regex;
+    let set = Regex::new(&r"a|e|o|u").unwrap();
+    set.find_iter(input).count()
 }
 pub fn number_to_string(i: i32) -> String {
     i.to_string()
@@ -323,4 +318,8 @@ fn fixed_tests() {
 #[test]
 fn test_get_count() {
     assert_eq!(get_count("abracadabra"), 5);
+}
+#[test]
+fn test_get_count_regx() {
+    assert_eq!(get_count_regex("abracadabra"), 5);
 }
