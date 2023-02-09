@@ -1,9 +1,19 @@
 #[allow(dead_code)]
+pub fn positive_sum(slice: &[i32]) -> i32 {
+    let mut output: i32 = 0;
+    for digit in slice {
+        if digit > &0 {
+            output += digit;
+        }
+    }
+    output
+}
+
 pub fn summation(n: i32) -> i32 {
     let number_vec: Vec<i32> = Vec::from_iter(0..n + 1);
-    
     number_vec.iter().sum()
 }
+
 pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
     let mut status: Vec<String> = Vec::new();
     for datum in data {
@@ -33,35 +43,21 @@ pub fn get_count(input: &str) -> usize {
     }
     vowels_count
 }
+
 pub fn get_count_regex(input: &str) -> usize {
     use regex::Regex;
     let set = Regex::new(&r"a|e|i|o|u").unwrap();
     set.find_iter(input).count()
 }
+
 pub fn number_to_string(i: i32) -> String {
     i.to_string()
 }
+
 pub fn solution(phrase: &str) -> String {
     phrase.chars().rev().collect()
 }
-//
-// Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and
-// carries the "instructions" for the development and functioning of living organisms.
-//
-// If you want to know more: http://en.wikipedia.org/wiki/DNA
-//
-// In DNA strings, symbols "A" and "T" are complements of each other, as "C" and
-// "G". Your function receives one side of the DNA (string, except for Haskell);
-// you need to return the other complementary side. DNA strand is never empty or
-// there is no DNA at all (again, except for Haskell).
-//
-// More similar exercise are found here: http://rosalind.info/problems/list-view/ (source)
-//
-// Example: (input --> output)
-//
-// "ATTGC" --> "TAACG"
-// "GTAT" --> "CATA"
-// mod working_functions;
+
 pub fn dna_strand(dna: &str) -> String {
     let mut char_vec: Vec<char> = vec![];
     for letter in dna.chars() {
@@ -76,21 +72,7 @@ pub fn dna_strand(dna: &str) -> String {
     }
     char_vec.iter().collect()
 }
-// The first input array is the key to the correct answers to an exam, like
-// ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
-//
-// The two arrays are not empty and are the same length. Return the score for
-// this array of answers, giving +4 for each correct answer, -1 for each incorrect answer,
-// and +0 for each blank answer, represented as an empty string (in C the space character is used).
-//
-// If the score < 0, return 0.
-//
-// For example:
-//
-// checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) → 6
-// checkExam(["a", "a", "c", "b"], ["a", "a", "b",  ""]) → 7
-// checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
-// checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
+
 pub fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
     let mut nums: Vec<i64> = Vec::new();
     for (key, answer) in arr_a.iter().zip(arr_b.iter()) {
@@ -105,23 +87,6 @@ pub fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
     sum_score.max(0)
 }
 
-// mod working_functions;
-
-// The first input array is the key to the correct answers to an exam, like
-// ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
-//
-// The two arrays are not empty and are the same length. Return the score for this
-// array of answers, giving +4 for each correct answer, -1 for each incorrect answer,
-// and +0 for each blank answer, represented as an empty string (in C the space character is used).
-//
-// If the score < 0, return 0.
-//
-// For example:
-//
-// checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) → 6
-// checkExam(["a", "a", "c", "b"], ["a", "a", "b",  ""]) → 7
-// checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
-// checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
 pub fn largest_five_digit_number_possible(num: &str) -> u32 {
     let mut char_array: Vec<char> = vec![];
     for char in num.chars() {
@@ -140,20 +105,6 @@ pub fn largest_five_digit_number_possible(num: &str) -> u32 {
     result
 }
 
-// In the following 6 digit number:
-//
-// 283910
-// 91 is the greatest sequence of 2 consecutive digits.
-//
-// In the following 10 digit number:
-//
-// 1234567890
-// 67890 is the greatest sequence of 5 consecutive digits.
-//
-// Complete the solution so that it returns the greatest sequence of five consecutive
-// digits found within the number give. The number will be passed in as a string of only digits.
-// It should return a five digit integer. The number passed may be as large as 1000 digits.
-//
 pub fn largest_five_digit_number(num: &str) -> u32 {
     let mut numeric_array: Vec<u32> = vec![];
     for (n, _) in num.chars().enumerate() {
@@ -169,29 +120,7 @@ pub fn largest_five_digit_number(num: &str) -> u32 {
     let output = numeric_array.iter().max().unwrap();
     *output
 }
-/// Return a String with all characters masked as '#' except the last 4.
-// Usually when you buy something, you're asked whether your credit card number,
-// phone number or answer to your most secret question is still correct. However,
-// since someone could look over your shoulder you don't want that shown on your
-// screen. Instead, we mask it.
-//
-// Your task is to write a function maskify, which changes all but the last four characters into '#'.
-//
-// Examples
-//
-// "4556364607935616" --> "############5616"
-//      "64607935616" -->      "#######5616"
-//                "1" -->                "1"
-//                 "" -->                 ""
-//
-// // "What was the name of your first pet?"
-//
-// "Skippy" --> "##ippy"
-//
-// "Nananananananananananananananana Batman!"
-// "####################################man!"
 
-// https://www.codewars.com/kata/5412509bd436bd33920011bc/train/rust
 pub fn maskify(cc: &str) -> String {
     let length = cc.len();
     if length < 5 {
@@ -201,24 +130,6 @@ pub fn maskify(cc: &str) -> String {
     format!("{}{}", "#".repeat(&length - 4), &cc[length - 4..length]).to_string()
 }
 
-// Given an integer as input, can you round it to the next
-// (meaning, "greater than or equal") multiple of 5?
-//
-// Examples:
-//
-// input:    output:
-// 0    ->   0
-// 2    ->   5
-// 3    ->   5
-// 12   ->   15
-// 21   ->   25
-// 30   ->   30
-// -2   ->   0
-// -5   ->   -5
-// etc.
-// Input may be any positive or negative integer (including 0).
-//
-// You can assume that all inputs are valid integers.
 pub fn round_to_next_5(n: i32) -> i32 {
     if n % 5 == 0 {
         return n;
@@ -360,4 +271,20 @@ fn basic_tests() {
     assert_eq!(summation(22), 253);
     assert_eq!(summation(100), 5050);
     assert_eq!(summation(213), 22791);
+}
+#[test]
+fn some_examples() {
+    assert_eq!(positive_sum(&[1, 2, 3, 4, 5]), 15);
+    assert_eq!(positive_sum(&[1, -2, 3, 4, 5]), 13);
+    assert_eq!(positive_sum(&[-1, 2, 3, 4, -5]), 9);
+}
+
+#[test]
+fn empty_list() {
+    assert_eq!(positive_sum(&[]), 0);
+}
+
+#[test]
+fn all_negative() {
+    assert_eq!(positive_sum(&[-1, -2, -3, -4, -5]), 0);
 }
