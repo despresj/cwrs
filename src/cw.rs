@@ -1,10 +1,9 @@
 #[allow(dead_code)]
-
 pub fn summation(n: i32) -> i32 {
     let number_vec: Vec<i32> = Vec::from_iter(0..n + 1);
+    
     number_vec.iter().sum()
 }
-
 pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
     let mut status: Vec<String> = Vec::new();
     for datum in data {
