@@ -1,4 +1,16 @@
 #[allow(dead_code)]
+pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
+    let mut status: Vec<String> = Vec::new();
+    for datum in data {
+        let category = match datum {
+            x if x.0 >= 55 && x.1 > 7 => "Senior",
+            _ => "Open",
+        };
+        status.push(category.to_string());
+    }
+    status
+}
+
 pub fn get_count(input: &str) -> usize {
     let mut vowels_count: usize = 0;
     for letter in input.chars() {
@@ -324,4 +336,15 @@ fn test_get_count_regx() {
     assert_eq!(get_count_regex("abracadabra"), 5);
     assert_eq!(get_count_regex("pear tree"), 4);
     assert_eq!(get_count_regex("o a kak ushakov lil vo kashu kakao"), 13);
+}
+#[test]
+fn returns_expected() {
+    assert_eq!(
+        open_or_senior(vec![(45, 12), (55, 21), (19, -2), (104, 20)]),
+        vec!["Open", "Senior", "Open", "Senior"]
+    );
+    assert_eq!(
+        open_or_senior(vec![(3, 12), (55, 1), (91, -2), (54, 23)]),
+        vec!["Open", "Open", "Open", "Open"]
+    );
 }
