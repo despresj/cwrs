@@ -18,7 +18,7 @@ pub fn get_count(input: &str) -> usize {
 }
 pub fn get_count_regex(input: &str) -> usize {
     use regex::Regex;
-    let set = Regex::new(&r"a|e|o|u").unwrap();
+    let set = Regex::new(&r"a|e|i|o|u").unwrap();
     set.find_iter(input).count()
 }
 pub fn number_to_string(i: i32) -> String {
@@ -322,4 +322,6 @@ fn test_get_count() {
 #[test]
 fn test_get_count_regx() {
     assert_eq!(get_count_regex("abracadabra"), 5);
+    assert_eq!(get_count_regex("pear tree"), 4);
+    assert_eq!(get_count_regex("o a kak ushakov lil vo kashu kakao"), 13);
 }
