@@ -1,4 +1,22 @@
-#[allow(dead_code)]
+pub fn find_outlier(values: &[i32]) -> i32 {
+    let mut count: i32 = 0;
+
+    let odd_count = values.into_iter().map(|x| {
+        if x % 2 != 0 {
+            count += 1
+        }
+    });
+
+    dbg!(&count);
+    count
+}
+
+pub fn array_diff<T: PartialEq>(a: Vec<T>, b: Vec<T>) -> Vec<T> {
+    let mut output = a;
+    output.retain(|x| !b.contains(x));
+    output
+}
+
 pub fn positive_sum(slice: &[i32]) -> i32 {
     let mut output: i32 = 0;
     for digit in slice {
@@ -287,4 +305,24 @@ fn empty_list() {
 #[test]
 fn all_negative() {
     assert_eq!(positive_sum(&[-1, -2, -3, -4, -5]), 0);
+}
+#[test]
+fn returns_expected_array_diff() {
+    assert_eq!(array_diff(vec![1, 2], vec![1]), vec![2]);
+    assert_eq!(array_diff(vec![1, 2, 2], vec![1]), vec![2, 2]);
+    assert_eq!(array_diff(vec![1, 2, 2], vec![2]), vec![1]);
+    assert_eq!(array_diff(vec![1, 2, 2], vec![]), vec![1, 2, 2]);
+    assert_eq!(array_diff(vec![], vec![1, 2]), vec![]);
+    assert_eq!(array_diff(vec![1, 2, 3], vec![1, 2]), vec![3]);
+}
+#[test]
+fn basic_test_outiars() {
+    let t1 = [2, 6, 8, -10, 3];
+    let t2 = [
+        206847684, 1056521, 7, 17, 1901, 21104421, 7, 1, 35521, 1, 7781,
+    ];
+    let t3 = [std::i32::MAX, 0, 1];
+    assert_eq!(3, find_outlier(&t1));
+    assert_eq!(206847684, find_outlier(&t2));
+    assert_eq!(0, find_outlier(&t3));
 }
