@@ -1,3 +1,7 @@
+fn repeat_str(src: &str, count: usize) -> String {
+    src.repeat(count)
+}
+
 pub fn get_middle(s: &str) -> &str {
     let n_chars = s.len();
     if n_chars % 2 == 0 {
@@ -10,7 +14,7 @@ pub fn get_middle(s: &str) -> &str {
 }
 
 pub fn find_outlier(values: &[i32]) -> i32 {
-        let mut even_count = 0;
+    let mut even_count = 0;
     let mut odd_count = 0;
 
     for value in values {
@@ -34,7 +38,6 @@ pub fn find_outlier(values: &[i32]) -> i32 {
     }
 
     panic!("We should not have made it past both checks")
-
 }
 
 pub fn array_diff<T: PartialEq>(a: Vec<T>, b: Vec<T>) -> Vec<T> {
@@ -359,4 +362,10 @@ fn get_middle_test() {
     assert_eq!(get_middle("middle"), "dd");
     assert_eq!(get_middle("A"), "A");
     assert_eq!(get_middle("of"), "of");
+}
+#[test]
+fn repeat_str_test() {
+    assert_eq!(repeat_str("a", 4), "aaaa");
+    assert_eq!(repeat_str("hello ", 3), "hello hello hello ");
+    assert_eq!(repeat_str("abc", 2), "abcabc");
 }
