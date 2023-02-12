@@ -3,8 +3,5 @@
 mod cws;
 
 fn main() {
-    println!(
-        "result = {:?}",
-        cws::find_short("this many words is five")
-    );
+    println!("result = {:?}", cws::find_short("this many words is five"));
 }
