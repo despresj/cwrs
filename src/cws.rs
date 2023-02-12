@@ -1,3 +1,14 @@
+pub fn get_middle(s: &str) -> &str {
+    let n_chars = s.len();
+    if n_chars % 2 == 0 {
+        let half = n_chars / 2;
+        return &s[half - 1..half + 1];
+    } else {
+        let half = n_chars / 2;
+        return &s[half..half + 1];
+    }
+}
+
 pub fn find_outlier(values: &[i32]) -> i32 {
         let mut even_count = 0;
     let mut odd_count = 0;
@@ -340,4 +351,12 @@ fn basic_test_outiars() {
     assert_eq!(3, find_outlier(&t1));
     assert_eq!(206847684, find_outlier(&t2));
     assert_eq!(0, find_outlier(&t3));
+}
+#[test]
+fn get_middle_test() {
+    assert_eq!(get_middle("test"), "es");
+    assert_eq!(get_middle("testing"), "t");
+    assert_eq!(get_middle("middle"), "dd");
+    assert_eq!(get_middle("A"), "A");
+    assert_eq!(get_middle("of"), "of");
 }
