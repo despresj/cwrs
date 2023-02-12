@@ -1,5 +1,29 @@
 pub fn find_outlier(values: &[i32]) -> i32 {
-    69
+        let mut even_count = 0;
+    let mut odd_count = 0;
+
+    for value in values {
+        if value % 2 == 0 {
+            even_count += 1
+        }
+        if value % 2 != 0 {
+            odd_count += 1
+        }
+    }
+
+    if even_count == 1 {
+        let output = values.iter().filter(|x| *x % 2 == 0).min();
+        println!("a = {:?}", &output.unwrap());
+        return *output.expect("minimum value");
+    }
+
+    if odd_count == 1 {
+        let output = values.iter().filter(|x| *x % 2 != 0).min();
+        return *output.expect("min values");
+    }
+
+    panic!("We should not have made it past both checks")
+
 }
 
 pub fn array_diff<T: PartialEq>(a: Vec<T>, b: Vec<T>) -> Vec<T> {
