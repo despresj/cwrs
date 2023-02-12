@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
-mod cw;
+mod cws;
 
 fn main() {
-    println!("result = {:?}", cw::find_outlier(&[3, 9, 5, 6]));
+    println!("result = {:?}", cws::find_outlier(&[2, 9, 5, 6]));
 }
