@@ -1,4 +1,9 @@
-fn repeat_str(src: &str, count: usize) -> String {
+pub fn find_short(s: &str) -> u32 {
+    //your code here
+    69
+}
+
+pub fn repeat_str(src: &str, count: usize) -> String {
     src.repeat(count)
 }
 
@@ -368,4 +373,25 @@ fn repeat_str_test() {
     assert_eq!(repeat_str("a", 4), "aaaa");
     assert_eq!(repeat_str("hello ", 3), "hello hello hello ");
     assert_eq!(repeat_str("abc", 2), "abcabc");
+}
+
+fn dotest_find_short_test(s: &str, expected: u32) {
+    let actual = find_short(s);
+    assert!(
+        actual == expected,
+        "With s = \"{s}\"\nExpected {expected} but got {actual}"
+    )
+}
+
+#[test]
+fn find_shortest_tests() {
+    dotest_find_short_test("bitcoin take over the world maybe who knows perhaps", 3);
+    dotest_find_short_test(
+        "turns out random test cases are easier than writing out basic ones",
+        3,
+    );
+    dotest_find_short_test("lets talk about javascript the best language", 3);
+    dotest_find_short_test("i want to travel the world writing code one day", 1);
+    dotest_find_short_test("Lets all go on holiday somewhere very cold", 2);
+    dotest_find_short_test("Let's travel abroad shall we", 2);
 }
