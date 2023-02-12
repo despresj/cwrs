@@ -1,6 +1,7 @@
 pub fn find_short(s: &str) -> u32 {
-    //your code here
-    69
+    let word_split = s.split_whitespace();
+    let lens = word_split.clone().map(|x| x.len()).min().unwrap_or(0);
+    return lens as u32;
 }
 
 pub fn repeat_str(src: &str, count: usize) -> String {

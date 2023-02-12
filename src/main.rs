@@ -3,5 +3,8 @@
 mod cws;
 
 fn main() {
-    println!("result = {:?}", cws::get_middle("strippers"));
+    println!(
+        "result = {:?}",
+        cws::find_short("this many words is five")
+    );
 }
