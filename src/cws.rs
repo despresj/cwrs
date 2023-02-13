@@ -1,7 +1,17 @@
-fn spin_words(words: &str) -> String {
-    // return a string with the words reversed if contain more than 5 letters
-    //
-    String::from("word")
+pub fn spin_words(words: &str) -> String {
+    let rev_vec: Vec<String> = words
+        .split_whitespace()
+        .clone()
+        .map(|x| {
+            if x.len() > 4 {
+                x.chars().rev().collect::<String>()
+            } else {
+                x.to_string()
+            }
+        })
+        .collect();
+
+    rev_vec.join(" ")
 }
 
 pub fn find_short(s: &str) -> u32 {
