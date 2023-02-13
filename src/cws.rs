@@ -1,7 +1,6 @@
 pub fn spin_words(words: &str) -> String {
-    let rev_vec: Vec<String> = words
+    words
         .split_whitespace()
-        .clone()
         .map(|x| {
             if x.len() > 4 {
                 x.chars().rev().collect::<String>()
@@ -9,9 +8,8 @@ pub fn spin_words(words: &str) -> String {
                 x.to_string()
             }
         })
-        .collect();
-
-    rev_vec.join(" ")
+        .collect::<Vec<String>>()
+        .join(" ")
 }
 
 pub fn find_short(s: &str) -> u32 {
