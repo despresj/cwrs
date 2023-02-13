@@ -1,3 +1,13 @@
+pub fn find_missing(seq: &[i32]) -> i32 {
+    let mut diff: Vec<i32> = Vec::new();
+    for (a, b) in seq.iter().zip(seq.iter().skip(1)) {
+        dbg!(b - a);
+        diff.push(b - a);
+    }
+    dbg!(diff);
+    69
+}
+
 pub fn spin_words(words: &str) -> String {
     words
         .split_whitespace()
@@ -429,4 +439,18 @@ fn spin_words_test() {
         spin_words("Seriously this is the last one"),
         "ylsuoireS this is the last one"
     );
+}
+const ERR_MSG: &str = "\nYour result (left) did not match the expected output (right)";
+
+fn do_find_missing_test(a: &[i32], expected: i32) {
+    assert_eq!(find_missing(a), expected, "{ERR_MSG} with seq = {a:?}")
+}
+
+#[test]
+fn find_missing_test() {
+    do_find_missing_test(&[1, 2, 3, 4, 6, 7, 8, 9], 5);
+    do_find_missing_test(&[1, 3, 4, 5, 6, 7, 8, 9], 2);
+
+    do_find_missing_test(&[3, 6, 12, 15, 18], 9);
+    do_find_missing_test(&[2, 4, 6, 10, 12], d);
 }

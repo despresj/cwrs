@@ -3,5 +3,8 @@
 mod cws;
 
 fn main() {
-    println!("result = {:?}", cws::find_short("this many words is five"));
+    println!(
+        "result = {:?}",
+        cws::find_missing(&[1, 2, 3, 4, 6, 7, 8, 9])
+    );
 }
