@@ -1,11 +1,37 @@
 pub fn find_missing(seq: &[i32]) -> i32 {
+    use std::collections::HashMap;
+    use std::collections::HashSet;
+
     let mut diff: Vec<i32> = Vec::new();
     for (a, b) in seq.iter().zip(seq.iter().skip(1)) {
-        dbg!(b - a);
         diff.push(b - a);
     }
-    dbg!(diff);
-    69
+    let unique_nums: HashSet<_> = diff.clone().into_iter().collect();
+
+    let mut count_map = HashMap::new();
+    for num in diff {
+        let count = count_map.entry(num).or_insert(0);
+        *count += 1;
+    }
+
+    let mut n: Vec<i32> = Vec::new();
+    let mut inc: Vec<i32> = Vec::new();
+    for number in &count_map {
+        inc.push(*number.0);
+        n.push(*number.1);
+    }
+
+    if n[0] > n[1] {
+        dbg!(inc[0]);
+        let increment = inc[0];
+    } else {
+        dbg!(inc[1]);
+        let increment = inc[1];
+    }
+
+    // which diff != inc
+    let out: i32 = 1;
+    out
 }
 
 pub fn spin_words(words: &str) -> String {
