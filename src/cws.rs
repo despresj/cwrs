@@ -1,37 +1,11 @@
-pub fn find_missing(seq: &[i32]) -> i32 {
-    use std::collections::HashMap;
-    use std::collections::HashSet;
-
-    let mut diff: Vec<i32> = Vec::new();
-    for (a, b) in seq.iter().zip(seq.iter().skip(1)) {
-        diff.push(b - a);
-    }
-    let unique_nums: HashSet<_> = diff.clone().into_iter().collect();
-
-    let mut count_map = HashMap::new();
-    for num in diff {
-        let count = count_map.entry(num).or_insert(0);
-        *count += 1;
+pub fn accum(s: &str) -> String {
+    let mut output: Vec<String> = Vec::new();
+    for (i, char) in s.chars().enumerate() {
+        let iter = char.to_string().to_lowercase().repeat(i);
+        output.push(char.to_string().to_uppercase() + &iter);
     }
 
-    let mut n: Vec<i32> = Vec::new();
-    let mut inc: Vec<i32> = Vec::new();
-    for number in &count_map {
-        inc.push(*number.0);
-        n.push(*number.1);
-    }
-
-    if n[0] > n[1] {
-        dbg!(inc[0]);
-        let increment = inc[0];
-    } else {
-        dbg!(inc[1]);
-        let increment = inc[1];
-    }
-
-    // which diff != inc
-    let out: i32 = 1;
-    out
+    output.join("-")
 }
 
 pub fn spin_words(words: &str) -> String {
@@ -466,17 +440,28 @@ fn spin_words_test() {
         "ylsuoireS this is the last one"
     );
 }
-const ERR_MSG: &str = "\nYour result (left) did not match the expected output (right)";
-
-fn do_find_missing_test(a: &[i32], expected: i32) {
-    assert_eq!(find_missing(a), expected, "{ERR_MSG} with seq = {a:?}")
-}
-
 #[test]
-fn find_missing_test() {
-    do_find_missing_test(&[1, 2, 3, 4, 6, 7, 8, 9], 5);
-    do_find_missing_test(&[1, 3, 4, 5, 6, 7, 8, 9], 2);
-
-    do_find_missing_test(&[3, 6, 12, 15, 18], 9);
-    do_find_missing_test(&[2, 4, 6, 10, 12], d);
+fn basic_testing_accum() {
+    assert_eq!(
+        accum("ZpglnRxqenU"),
+        "Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu"
+    );
+    assert_eq!(
+        accum("NyffsGeyylB"),
+        "N-Yy-Fff-Ffff-Sssss-Gggggg-Eeeeeee-Yyyyyyyy-Yyyyyyyyy-Llllllllll-Bbbbbbbbbbb"
+    );
+    assert_eq!(
+        accum("MjtkuBovqrU"),
+        "M-Jj-Ttt-Kkkk-Uuuuu-Bbbbbb-Ooooooo-Vvvvvvvv-Qqqqqqqqq-Rrrrrrrrrr-Uuuuuuuuuuu"
+    );
+    assert_eq!(
+        accum("EvidjUnokmM"),
+        "E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm"
+    );
+    assert_eq!(
+        accum("HbideVbxncC"),
+        "H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc"
+    );
+    assert_eq!(accum("ijk"), "I-Jj-Kkk");
+    assert_eq!(accum("ztk"), "Z-Tt-Kkk");
 }
