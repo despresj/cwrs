@@ -1,5 +1,10 @@
 pub fn elevator_distance(floors: &[i16]) -> i16 {
-    todo!()
+    let mut distance: Vec<i16> = Vec::new();
+    for (floor, next_floor) in floors.iter().zip(floors.iter().skip(1)) {
+        let diff = floor - next_floor;
+        distance.push(diff.abs());
+    }
+    distance.iter().sum()
 }
 
 #[test]
