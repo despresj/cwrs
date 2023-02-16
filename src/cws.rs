@@ -1,3 +1,40 @@
+pub fn five_div(num: i32) -> i32 {
+    let mut nums_to_sum: Vec<i32> = Vec::new();
+    for number in 0..num {
+        if number % 5 == 0 || number % 3 == 0 {
+            dbg!(number);
+            nums_to_sum.push(number)
+        }
+    }
+    let output: i32 = nums_to_sum.into_iter().sum();
+    output
+}
+
+#[test]
+fn sample_tests() {
+    // assertion(expected, input);
+    assertion(23, 10);
+    assertion(33, 11);
+    assertion(225, 33);
+    assertion(8, 6);
+    assertion(3420, 123);
+    assertion(543, 50);
+    assertion(0, 0);
+    assertion(0, -203);
+    assertion(25719750, 10500);
+}
+
+fn assertion(expected: i32, input: i32) {
+    let actual = five_div(input);
+
+    assert!(
+        expected == actual,
+        "\nTest failed!\n expected: {}\n actual: {}\n input: {}\n",
+        expected,
+        actual,
+        input
+    );
+}
 pub fn accum(s: &str) -> String {
     let mut output: Vec<String> = Vec::new();
     for (i, char) in s.chars().enumerate() {
