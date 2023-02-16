@@ -1,13 +1,8 @@
 pub fn five_div(num: i32) -> i32 {
-    let mut nums_to_sum: Vec<i32> = Vec::new();
-    for number in 0..num {
-        if number % 5 == 0 || number % 3 == 0 {
-            dbg!(number);
-            nums_to_sum.push(number)
-        }
-    }
-    let output: i32 = nums_to_sum.into_iter().sum();
-    output
+    (0..num)
+        .into_iter()
+        .filter(|x| x % 5 == 0 || x % 3 == 0)
+        .sum()
 }
 
 #[test]
