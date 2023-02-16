@@ -1,3 +1,13 @@
+pub fn high_and_low(numbers: &str) -> String {
+    String::new()
+}
+
+#[test]
+fn test_high_and_low() {
+    assert_eq!("42 -9", high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4"));
+    assert_eq!("3 1", high_and_low("1 2 3"));
+}
+
 pub fn to_camel_case(text: &str) -> String {
     let mut output: Vec<String> = Vec::new();
     let mut cap_next = false;

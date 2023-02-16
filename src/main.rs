@@ -3,5 +3,5 @@
 mod cws;
 
 fn main() {
-    println!("result = {:?}", cws::elevator_distance(&[2, 5, 1]));
+    println!("result = {:?}", cws::high_and_low("9 2 1 2"));
 }
