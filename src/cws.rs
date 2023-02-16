@@ -1,3 +1,25 @@
+pub fn elevator_distance(floors: &[i16]) -> i16 {
+    todo!()
+}
+
+#[test]
+fn elevator_distance_test() {
+    assert_eq!(elevator_distance(&[5, 2, 8]), 9);
+    assert_eq!(elevator_distance(&[1, 2, 3]), 2);
+    assert_eq!(elevator_distance(&[7, 1, 7, 1]), 18);
+}
+
+pub fn disemvowel(s: &str) -> String {
+    s.replace(&['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'], "")
+}
+
+#[test]
+fn example_test() {
+    assert_eq!(
+        disemvowel("This website is for losers LOL!"),
+        "Ths wbst s fr lsrs LL!"
+    );
+}
 pub fn five_div(num: i32) -> i32 {
     (0..num)
         .into_iter()
