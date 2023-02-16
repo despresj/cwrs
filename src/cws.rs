@@ -1,3 +1,37 @@
+pub fn to_camel_case(text: &str) -> String {
+    let mut output: Vec<String> = Vec::new();
+    let mut cap_next = false;
+
+    for letter in text.chars() {
+        if letter == '_' || letter == '-' {
+            cap_next = true;
+        } else {
+            if cap_next {
+                output.push(letter.to_ascii_uppercase().to_string());
+                cap_next = false;
+            } else {
+                output.push(letter.to_string());
+                cap_next = false;
+            }
+        }
+    }
+    output.join("")
+}
+
+const ERR_MSG: &str = "\nYour result (left) did not match the expected output (right)";
+
+fn dotest(s: &str, expected: &str) {
+    assert_eq!(to_camel_case(s), expected, "{ERR_MSG} with text = \"{s}\"")
+}
+
+#[test]
+fn camel_case_test() {
+    dotest("", "");
+    dotest("the_stealth_warrior", "theStealthWarrior");
+    dotest("The-Stealth-Warrior", "TheStealthWarrior");
+    dotest("A-B-C", "ABC");
+}
+
 pub fn elevator_distance(floors: &[i16]) -> i16 {
     floors
         .iter()
@@ -32,7 +66,7 @@ pub fn five_div(num: i32) -> i32 {
 }
 
 #[test]
-fn sample_tests() {
+fn test_five_div() {
     // assertion(expected, input);
     assertion(23, 10);
     assertion(33, 11);
