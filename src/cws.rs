@@ -1,3 +1,29 @@
+pub fn count_duplicates(text: &str) -> u32 {
+    use std::collections::HashMap;
+
+    let mut count_map = HashMap::new();
+    for letter in text.chars() {
+        let count = count_map.entry(letter).or_insert(0);
+        *count += 1;
+    }
+
+    let mut num_repeated: Vec<i32> = Vec::new();
+    for (letter, count) in count_map {
+        if count > 1 {
+            num_repeated.push(count);
+        }
+    }
+
+    num_repeated.len().try_into().unwrap()
+}
+
+#[test]
+fn test_count_duplicates() {
+    assert_eq!(count_duplicates("abcde"), 0);
+    assert_eq!(count_duplicates("indivisibility"), 1);
+    assert_eq!(count_duplicates("abcdea"), 1);
+}
+
 pub fn high_and_low(numbers: &str) -> String {
     let iter_nums: Vec<i32> = numbers
         .split_whitespace()
