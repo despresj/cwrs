@@ -1,5 +1,12 @@
 pub fn high_and_low(numbers: &str) -> String {
-    String::new()
+    let iter_nums: Vec<i32> = numbers
+        .split_whitespace()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect();
+
+    let minimum = iter_nums.iter().min().unwrap().to_string();
+    let maximum = iter_nums.iter().max().unwrap().to_string();
+    [maximum, minimum].join(" ")
 }
 
 #[test]
