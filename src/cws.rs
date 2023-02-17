@@ -1,6 +1,11 @@
 pub fn likes(names: &[&str]) -> String {
-    // Note: For 4 or more names, the number in "and 2 others" simply increases.
-    String::from("hey")
+    match names.len() {
+        0 => "no one likes this".to_string(),
+        1 => format!("{} likes this", names.join("")),
+        2 => format!("{} like this", names.join(" and ")),
+        3 => format!("{} and {} like this", names[0..2].join(", "), names[2]),
+        x => format!("{} and {} others like this", names[0..2].join(", "), x - 2),
+    }
 }
 
 #[test]
