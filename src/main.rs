@@ -5,6 +5,6 @@ mod cws;
 fn main() {
     println!(
         "result = {:?}",
-        cws::likes(&["Joe", "Paul", "John", "Phil", "Kate"])
+        cws::hamming("propersterous", "perporsteros")
     );
 }
