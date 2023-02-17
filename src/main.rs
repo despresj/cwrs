@@ -3,5 +3,8 @@
 mod cws;
 
 fn main() {
-    println!("result = {:?}", cws::high_and_low("9 2 1 2"));
+    println!(
+        "result = {:?}",
+        cws::likes(&["Joe", "Paul", "John", "Phil", "Kate"])
+    );
 }
