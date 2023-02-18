@@ -1,3 +1,16 @@
+pub fn spoonerize(words: &str) -> String {
+    String::from("hey")
+}
+// https://www.codewars.com/kata/56b8903933dbe5831e000c76/train/rust
+
+#[test]
+#[ignore]
+fn spoonerize_test() {
+    assert_eq!(spoonerize("nit picking"), "pit nicking");
+    assert_eq!(spoonerize("wedding bells"), "bedding wells");
+    assert_eq!(spoonerize("jelly beans"), "belly jeans");
+}
+
 pub fn hamming(a: &str, b: &str) -> usize {
     a.chars().zip(b.chars()).filter(|(x, y)| x != y).count()
 }
