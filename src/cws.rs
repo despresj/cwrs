@@ -1,5 +1,5 @@
 pub fn hamming(a: &str, b: &str) -> usize {
-   a.chars().zip(b.chars()).filter(|(x, y)| x != y).count()
+    a.chars().zip(b.chars()).filter(|(x, y)| x != y).count()
 }
 
 #[test]
