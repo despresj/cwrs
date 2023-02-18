@@ -1,5 +1,11 @@
 pub fn hamming(a: &str, b: &str) -> usize {
-    69
+    let mut dist: Vec<usize> = Vec::new();
+    for (first, second) in a.chars().zip(b.chars()) {
+        if first != second {
+            dist.push(1);
+        }
+    }
+    dist.into_iter().sum()
 }
 
 #[test]
