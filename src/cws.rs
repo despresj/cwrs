@@ -163,7 +163,7 @@ fn test_five_div() {
     assertion(543, 50);
     assertion(0, 0);
     assertion(0, -203);
-    assertion(25719750, 10500);
+    assertion(25_719_750, 10_500);
 }
 
 fn assertion(expected: i32, input: i32) {
@@ -171,10 +171,7 @@ fn assertion(expected: i32, input: i32) {
 
     assert!(
         expected == actual,
-        "\nTest failed!\n expected: {}\n actual: {}\n input: {}\n",
-        expected,
-        actual,
-        input
+        "\nTest failed!\n expected: {expected}\n actual: {actual}\n input: {input}\n"
     );
 }
 pub fn accum(s: &str) -> String {
@@ -203,8 +200,8 @@ pub fn spin_words(words: &str) -> String {
 
 pub fn find_short(s: &str) -> u32 {
     let word_split = s.split_whitespace();
-    let lens = word_split.clone().map(|x| x.len()).min().unwrap_or(0);
-    return lens as u32;
+    let lens = word_split.clone().map(str::len).min().unwrap_or(0);
+    lens as u32
 }
 
 pub fn repeat_str(src: &str, count: usize) -> String {
@@ -215,10 +212,10 @@ pub fn get_middle(s: &str) -> &str {
     let n_chars = s.len();
     if n_chars % 2 == 0 {
         let half = n_chars / 2;
-        return &s[half - 1..half + 1];
+        &s[(half - 1)..=half]
     } else {
         let half = n_chars / 2;
-        return &s[half..half + 1];
+        &s[half..=half]
     }
 }
 
@@ -266,7 +263,7 @@ pub fn positive_sum(slice: &[i32]) -> i32 {
 }
 
 pub fn summation(n: i32) -> i32 {
-    let number_vec: Vec<i32> = Vec::from_iter(0..n + 1);
+    let number_vec: Vec<i32> = Vec::from_iter(0..=n);
     number_vec.iter().sum()
 }
 
@@ -302,7 +299,7 @@ pub fn get_count(input: &str) -> usize {
 
 pub fn get_count_regex(input: &str) -> usize {
     use regex::Regex;
-    let set = Regex::new(&r"a|e|i|o|u").unwrap();
+    let set = Regex::new(r"a|e|i|o|u").unwrap();
     set.find_iter(input).count()
 }
 
@@ -383,7 +380,7 @@ pub fn maskify(cc: &str) -> String {
         return cc.to_string();
     }
 
-    format!("{}{}", "#".repeat(&length - 4), &cc[length - 4..length]).to_string()
+    format!("{}{}", "#".repeat(&length - 4), &cc[length - 4..length])
 }
 
 pub fn round_to_next_5(n: i32) -> i32 {
@@ -394,10 +391,10 @@ pub fn round_to_next_5(n: i32) -> i32 {
     if n > 0 {
         println!("n = {}, res = {}", n, n - n % 5 + 5);
 
-        return n - (n % 5) + 5;
+        n - (n % 5) + 5
     } else {
         println!("n = {}, res = {}", n, n - n % 5);
-        return n - n % 5;
+        n - n % 5
     }
 }
 
@@ -459,7 +456,7 @@ mod tests {
             [555, 555],
         ];
 
-        for [x, out] in tests.iter() {
+        for [x, out] in &tests {
             assert_eq!(round_to_next_5(*x), *out);
         }
     }
@@ -474,16 +471,16 @@ fn it_masks_example_strings() {
 }
 #[test]
 fn test_basic_cooler() {
-    assert_eq!(largest_five_digit_number_possible(&"1234567890"), 98765);
-    assert_eq!(largest_five_digit_number_possible(&"48894134"), 98844);
-    assert_eq!(largest_five_digit_number_possible(&"1199991991"), 99999);
-    assert_eq!(largest_five_digit_number_possible(&"731674765"), 77766);
+    assert_eq!(largest_five_digit_number_possible("1234567890"), 98765);
+    assert_eq!(largest_five_digit_number_possible("48894134"), 98844);
+    assert_eq!(largest_five_digit_number_possible("1199991991"), 99999);
+    assert_eq!(largest_five_digit_number_possible("731674765"), 77766);
 }
 
 #[test]
 fn test_basic() {
-    assert_eq!(largest_five_digit_number(&"1234567890"), 67890);
-    assert_eq!(largest_five_digit_number(&"731674765"), 74765);
+    assert_eq!(largest_five_digit_number("1234567890"), 67890);
+    assert_eq!(largest_five_digit_number("731674765"), 74765);
 }
 #[test]
 fn fixed_tests() {
@@ -557,11 +554,21 @@ fn returns_expected_array_diff() {
 fn basic_test_outiars() {
     let t1 = [2, 6, 8, -10, 3];
     let t2 = [
-        206847684, 1056521, 7, 17, 1901, 21104421, 7, 1, 35521, 1, 7781,
+        206_847_684,
+        1_056_521,
+        7,
+        17,
+        1901,
+        21_104_421,
+        7,
+        1,
+        35521,
+        1,
+        7781,
     ];
     let t3 = [std::i32::MAX, 0, 1];
     assert_eq!(3, find_outlier(&t1));
-    assert_eq!(206847684, find_outlier(&t2));
+    assert_eq!(206_847_684, find_outlier(&t2));
     assert_eq!(0, find_outlier(&t3));
 }
 #[test]
