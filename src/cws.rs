@@ -5,7 +5,7 @@ struct SummationError;
 fn sum_str_to_vec(strs: &Vec<String>) -> Result<String, SummationError> {
     let mut accum: i32 = 0;
     for s in strs {
-        accum += to_int(&s).ok_or(SummationError)?;
+        accum += to_int(s).ok_or(SummationError)?;
     }
     Ok(accum.to_string())
 }
