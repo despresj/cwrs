@@ -105,14 +105,12 @@ pub fn to_camel_case(text: &str) -> String {
     for letter in text.chars() {
         if letter == '_' || letter == '-' {
             cap_next = true;
+        } else if cap_next {
+            output.push(letter.to_ascii_uppercase().to_string());
+            cap_next = false;
         } else {
-            if cap_next {
-                output.push(letter.to_ascii_uppercase().to_string());
-                cap_next = false;
-            } else {
-                output.push(letter.to_string());
-                cap_next = false;
-            }
+            output.push(letter.to_string());
+            cap_next = false;
         }
     }
     output.join("")
@@ -148,7 +146,7 @@ fn elevator_distance_test() {
 }
 
 pub fn disemvowel(s: &str) -> String {
-    s.replace(&['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'], "")
+    s.replace(['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'], "")
 }
 
 #[test]
