@@ -1,3 +1,25 @@
+#[derive(Debug)]
+
+struct SummationError;
+
+fn sum_str_to_vec(strs: &Vec<String>) -> Result<String, SummationError> {
+    let mut accum: i32 = 0;
+    for s in strs {
+        accum += to_int(&s).ok_or(SummationError)?;
+    }
+    Ok(accum.to_string())
+}
+#[test]
+fn test_sum_str() {
+    let v = vec![String::from("1"), String::from("2")];
+    let total = sum_str_to_vec(&v);
+    assert_eq!(total.expect("correct"), String::from("3"));
+}
+
+fn to_int(s: &str) -> Option<i32> {
+    s.parse().ok()
+}
+
 pub fn spoonerize(words: &str) -> String {
     String::from("hey")
 }
@@ -119,7 +141,7 @@ pub fn to_camel_case(text: &str) -> String {
 const ERR_MSG: &str = "\nYour result (left) did not match the expected output (right)";
 
 fn dotest(s: &str, expected: &str) {
-    assert_eq!(to_camel_case(s), expected, "{ERR_MSG} with text = \"{s}\"")
+    assert_eq!(to_camel_case(s), expected, "{ERR_MSG} with text = \"{s}\"");
 }
 
 #[test]
@@ -422,7 +444,7 @@ mod tests {
         assert!(
             actual == expected,
             "With dna = \"{s}\"\nExpected \"{expected}\" but got \"{actual}\""
-        )
+        );
     }
 
     #[test]
@@ -500,7 +522,7 @@ fn fixed_tests() {
         assert!(
             actual == expected,
             "With n = {n}\nExpected \"{expected}\" but got \"{actual}\""
-        )
+        );
     }
     do_num_to_str_test(67, "67");
     do_num_to_str_test(79585, "79585");
